@@ -1,0 +1,35 @@
+content/about.md
+  2388d535ced4e6ed 1-51
+content/posts/智能语音架构演进史以及Agent时代语音架构新思考/index.md
+  2388d535ced4e6ed 1-7
+content/posts/溪柳自摇.md
+  2388d535ced4e6ed 4-5
+hugo.toml
+  2388d535ced4e6ed 1-91
+content/search.md
+  2388d535ced4e6ed 1-7
+content/archives.md
+  2388d535ced4e6ed 1-6
+.github/workflows/deploy.yml
+  2388d535ced4e6ed 1-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.20",
+  "base_commit_sha": "dce1dd1656e4f3e457e8cadafe04103e6aee663e",
+  "prompts": {
+    "2388d535ced4e6ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d963b80-252d-4ab5-a4f7-906379e1d9aa",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "wangj77",
+      "messages": [],
+      "total_additions": 286,
+      "total_deletions": 7,
+      "accepted_lines": 214,
+      "overriden_lines": 0
+    }
+  }
+}
