@@ -1,0 +1,23 @@
+content/posts/claude-harness-analysis.md
+  af5990aee490cfd1 1-1409
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.20",
+  "base_commit_sha": "924e57ddb9f42c5861d9b304cf4511c7728b5aee",
+  "prompts": {
+    "af5990aee490cfd1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4f19-a8cd-7b01-9b5b-cb8eba3b1859",
+        "model": "gpt-5.5"
+      },
+      "human_author": "wangj77",
+      "messages": [],
+      "total_additions": 1644,
+      "total_deletions": 224,
+      "accepted_lines": 1420,
+      "overriden_lines": 0
+    }
+  }
+}
