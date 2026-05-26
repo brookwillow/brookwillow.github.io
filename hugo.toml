@@ -44,7 +44,7 @@ buildExpired = false
   tocopen = false
 
   [params.homeInfoParams]
-    Title = "晴耕雨读，溪流自摇"
+    Title = "晴耕雨读，溪柳自摇"
     Content = "一等人修身齐家，两家事读书耕田"
 
   [[params.socialIcons]]
