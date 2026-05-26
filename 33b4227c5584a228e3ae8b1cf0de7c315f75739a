@@ -1,0 +1,25 @@
+content/posts/building-a-cross-platform-intelligent-in-vehicle-voice-system.md
+  af5990aee490cfd1 1-5
+content/posts/bitter-lession-of-xp-2025.md
+  af5990aee490cfd1 1-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.20",
+  "base_commit_sha": "33b4227c5584a228e3ae8b1cf0de7c315f75739a",
+  "prompts": {
+    "af5990aee490cfd1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4f19-a8cd-7b01-9b5b-cb8eba3b1859",
+        "model": "gpt-5.5"
+      },
+      "human_author": "wangj77",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    }
+  }
+}
