@@ -44,8 +44,8 @@ buildExpired = false
   tocopen = false
 
   [params.homeInfoParams]
-    Title = "你好，欢迎来到我的博客 👋"
-    Content = "这里记录我的技术探索、生活感悟与点滴思考。希望这些文字能对你有所帮助或启发。"
+    Title = "晴耕雨读，溪流自摇"
+    Content = "一等人修身齐家，两家事读书耕田"
 
   [[params.socialIcons]]
     name = "github"
