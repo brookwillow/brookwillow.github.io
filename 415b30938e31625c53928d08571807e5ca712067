@@ -1,0 +1,27 @@
+content/posts/universal-agent-evolution.md
+  a6a8def30825d3ab 1-121
+content/posts/ask-user-question-tool-design.md
+  a6a8def30825d3ab 1-178
+content/posts/mdp-in-llm-post-training.md
+  a6a8def30825d3ab 1-185
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.22",
+  "base_commit_sha": "415b30938e31625c53928d08571807e5ca712067",
+  "prompts": {
+    "a6a8def30825d3ab": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9bbcd93d-91ea-4cf1-9500-25dbb3d8c52f",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "wangj77",
+      "messages": [],
+      "total_additions": 484,
+      "total_deletions": 15,
+      "accepted_lines": 484,
+      "overriden_lines": 0
+    }
+  }
+}
