@@ -1,0 +1,23 @@
+content/posts/qwen-omni-aut-whisper-asr.md
+  a6a8def30825d3ab 1-271
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.22",
+  "base_commit_sha": "291ecb60906ce08c96423c7b4ca189f28b1ce2c7",
+  "prompts": {
+    "a6a8def30825d3ab": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9bbcd93d-91ea-4cf1-9500-25dbb3d8c52f",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "wangj77",
+      "messages": [],
+      "total_additions": 271,
+      "total_deletions": 5,
+      "accepted_lines": 271,
+      "overriden_lines": 0
+    }
+  }
+}
