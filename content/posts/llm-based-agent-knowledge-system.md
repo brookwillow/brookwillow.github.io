@@ -120,46 +120,55 @@ draft: false
 
 #### 训练体系
 
-##### 预训练
-
-- 核心目标：通用语言能力、世界知识与基础逻辑习得
-- 训练任务
-  - 掩码语言建模(Masked Language Modeling)
-  - 因果语言建模(Causal Language Modeling)
-  - 序列到序列(Sequence-To-Sequence)
-  - 判别式任务(Discriminative Tasks)
-
-##### 后训练
-
-###### 有监督微调(SFT)
-
-- 核心目标：构建模型指令遵循、基础工具调用和基础任务规划能力；完成模型的基础意图、安全合规与价值观对齐
-- 方式
-  - 全参微调
-  - 参数高效微调(PEFT)
-    - LoRA(低秩更新)
-      - QLoRA：4-bit 存底座 + 16-bit 动态反量化计算 + 只训 16-bit LoRA；原始参数4bit 分块量化存储；前向传播 16bit 动态反量化计算；16bit LoRA 更新
-    - Adapter(插入小网络)
-    - Soft Prompt(训练提示向量)
-      - Prompt Tuning：输入层软提示
-      - P-Tuning v1
-      - Prefix Tuning：每层 K/V 前缀
-      - P-Tuning v2（≈ Prefix Tuning）
-
-###### 强化学习（RL）增强
-
-- 核心目标：优化输出的人类偏好匹配度、安全合规性、无害性；习得复杂任务的规划路径、工具调用决策、环境交互与错误修正能力；基于业务场景优化 Agent 执行路径，提升业务任务完成率
-- 方式
-  - RLHF（基于人类反馈的强化学习）
-  - RLAIF（基于 AI 反馈的强化学习）
-  - RLVR（可验证奖励的强化学习）
-- 核心算法：PPO
-  - Actor Model(SFT after model)
-  - Reword Model(建模人类偏好)
-  - Reference Model(冻结参数的SFT after model)
-  - Critic Model(给出方向指南)
-
-##### 业务适配微调
+- **预训练**
+  - 核心目标：通用语言能力、世界知识与基础逻辑习得
+  - 训练任务
+    - 掩码语言建模(Masked Language Modeling)
+    - 因果语言建模(Causal Language Modeling)
+    - 序列到序列(Sequence-To-Sequence)
+    - 判别式任务(Discriminative Tasks)
+- **后训练**
+  - **有监督微调(SFT)**
+    - 核心目标
+      - 构建模型指令遵循、基础工具调用和基础任务规划能力
+      - 完成模型的基础意图、安全合规与价值观对齐
+      - 业务适配微调
+    - 方式
+      - 全参微调
+      - 参数高效微调(PEFT)
+        - Adapter(插入小网络)
+        - LoRA(低秩更新)
+          - LoRA
+          - QLoRA
+            - 4-bit 存底座 + 16-bit 动态反量化计算 + 只训16-bit LoRA
+              - 原始参数4bit 分块量化存储
+              - 前向传播16bit 动态反量化计算
+              - 16bit LoRA 更新
+        - Soft Prompt(训练提示向量)
+          - 输入层软提示
+            - Prompt Tuning
+            - P-Tuning v1
+          - 每层 K/V 前缀
+            - Prefix Tuning
+            - P-Tuning v2 (≈ Prefix Tuning)
+  - **强化学习(RL)增强**
+    - 核心目标
+      - 优化输出的人类偏好匹配度、安全合规性、无害性
+      - 习得复杂任务的规划路径、工具调用决策、环境交互与错误修正能力
+      - 基于业务场景优化Agent执行路径，提升业务任务完成率
+    - 方式
+      - **有独立奖励模型(RM)**
+        - RLHF（基于人类反馈的强化学习）
+        - RLAIF（基于AI反馈的强化学习）
+        - RLVR（可验证奖励的强化学习）
+        - 核心算法：PPO
+          - Actor Model(SFT after model)
+          - Reword Model(建模人类偏好)
+          - Reference Model(冻结参数的SFT after model)
+          - Critic Model(给出方向指南)
+      - **无独立奖励模型(直接偏好对齐)**
+        - DPO
+        - GRPO
 
 #### 部署和推理优化
 
