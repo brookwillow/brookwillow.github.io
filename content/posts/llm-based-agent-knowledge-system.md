@@ -57,9 +57,13 @@ draft: false
   - DeepSeek R1
 - 无
 
-## 核心架构
+## 基本构成
 
-### 输入预处理层
+### 大脑（大模型）
+
+#### 核心架构
+
+##### 输入预处理层
 
 - 分词（BPE）
   - 先拆到最小粒度（单字符 / 字节），再按频率合并，让高频组合变成一个 token，低频的保留细粒度
@@ -79,7 +83,7 @@ draft: false
     - ALiBi
       - 不添加position embedding, 直接在attention加上 k(m-n)
 
-### Transformer Block
+##### Transformer Block
 
 - 多头拆分与 KV 组织
   - MHA(Multi-Head Attention)：标准多头，将 Q/K/V 均拆分为相同数量的独立头，各自计算注意力后拼接
@@ -87,7 +91,7 @@ draft: false
   - GQA(Grouped-Query Attention)：将 Q 头分为若干组，每组共享一套独立的 KV 头，是 MHA 与 MQA 的折中方案
   - MLA (Multi-head Latent Attention)：通过低秩联合投影将所有头的 KV 压缩到一个小维度潜在空间，推理时仅缓存低维潜在向量
 
-#### 注意力机制
+###### 注意力机制
 
 - QKV变化矩阵
 - 注意力分数计算
@@ -96,7 +100,7 @@ draft: false
 - 注意力权重计算
 - 上下文向量计算
 
-#### 注意力机制变体
+###### 注意力机制变体
 
 - Sliding Window Attention：按固定窗口限定 KV 存储范围，只保留近期窗口内的 KV，从缓存长度上缩减 KV 占用
 - Streaming LLM：动态组织 KV 缓存策略，保留锚点与近期 KV、丢弃中间冗余部分，实现长文本下的 KV 缓存轻量化
@@ -104,18 +108,18 @@ draft: false
 - 层归一化（LayerNorm）
 - 残差连接
 
-### 输出层（LM Head）
+##### 输出层（LM Head）
 
-### 上下文缓存
+##### 上下文缓存
 
 - KV cache：单次推理的自回归生成阶段，复用之前已经计算好的 Key 和 Value 向量，避免对整个上下文序列重复计算注意力
 - Prompt cache：将固定或重复出现的 Prompt 片段（如系统提示、长上下文前缀）的 KV 结果预先缓存，在多轮对话或相似请求中直接复用
 - KV Cache优化
   - Pruning KV Cache：裁剪部分不重要的低贡献KV, 压缩缓存体积
 
-## 训练体系
+#### 训练体系
 
-### 预训练
+##### 预训练
 
 - 核心目标：通用语言能力、世界知识与基础逻辑习得
 - 训练任务
@@ -124,9 +128,9 @@ draft: false
   - 序列到序列(Sequence-To-Sequence)
   - 判别式任务(Discriminative Tasks)
 
-### 后训练
+##### 后训练
 
-#### 有监督微调(SFT)
+###### 有监督微调(SFT)
 
 - 核心目标：构建模型指令遵循、基础工具调用和基础任务规划能力；完成模型的基础意图、安全合规与价值观对齐
 - 方式
@@ -141,7 +145,7 @@ draft: false
       - Prefix Tuning：每层 K/V 前缀
       - P-Tuning v2（≈ Prefix Tuning）
 
-#### 强化学习（RL）增强
+###### 强化学习（RL）增强
 
 - 核心目标：优化输出的人类偏好匹配度、安全合规性、无害性；习得复杂任务的规划路径、工具调用决策、环境交互与错误修正能力；基于业务场景优化 Agent 执行路径，提升业务任务完成率
 - 方式
@@ -154,11 +158,11 @@ draft: false
   - Reference Model(冻结参数的SFT after model)
   - Critic Model(给出方向指南)
 
-### 业务适配微调
+##### 业务适配微调
 
-## 部署和推理优化
+#### 部署和推理优化
 
-### 计算优化
+##### 计算优化
 
 - 量化
   - 8bit/4bit量化
@@ -169,9 +173,9 @@ draft: false
 - 张量并行
 - 批处理优化：多个独立的生成任务打包成一个「批次（batch）」，让模型一次前向同时处理所有任务
 
-### 解码加速
+##### 解码加速
 
-#### 生成解码策略
+###### 生成解码策略
 
 - 确定性解码策略
   - 贪婪解码
@@ -190,9 +194,7 @@ draft: false
 - 重复控制
 - presence_penalty
 
-## 基本构成
 
-### 大脑（大模型）
 
 ### 感知
 
