@@ -1,11 +1,11 @@
 ---
-title: Anatomy of LLM-Based Agent
+title: The Anatomy of a LLM-Based Agent
 date: 2025-12-07 00:00:00
 tags: ["AI综述"]
 draft: false
 ---
 
-# Anatomy of LLM-Based Agent
+# The Anatomy of a LLM-Based Agent
 
 ## 概念、定义
 
