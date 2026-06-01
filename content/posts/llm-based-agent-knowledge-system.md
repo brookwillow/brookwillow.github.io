@@ -30,6 +30,9 @@ draft: false
   - T5、BART
   - UniLM
   - 多模态Decoder
+- Diffusion Model
+  - MDLM、D3LM
+  - 扩散语言模型：通过前向加噪与反向去噪生成文本，非自回归并行生成
 
 ### 模态
 
