@@ -190,7 +190,7 @@ draft: false
   - Contrastive Search（对比搜索，可选补充，同属对比类解码）
 - Speculative Decoding：采用小模型快速推测多轮候选token，由大模型单次前向完成批量校验，通过减少大模型推理次数实现生成加速
 - 重复控制
-- presence_penalty
+  - presence_penalty
 
 
 #### 核心挑战和常见问题
