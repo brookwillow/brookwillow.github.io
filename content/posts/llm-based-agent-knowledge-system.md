@@ -230,52 +230,94 @@ draft: false
 - Skill 配套资源精准按需注入
 - 本质是 模型主导的渐进式知识注入，是某种任务agent的语义抽象
 
-### 记忆和知识
+### AI Agent 记忆体系知识框架
 
-- **定位**：唯一对接全模块原始信息、唯一向决策核心（大模型 / 大脑）交付标准化推理素材的专职中枢，是 Agent 系统的「专属配菜师」与「专职案卷整理员」：它不生产原始信息、不做任务决策，仅负责将感知、记忆、工具等模块输出的零散异构原始信息，完成标准化加工、合规性校验、有序整合，最终交付给决策核心唯一可直接使用的完整合规推理素材，是串联 Agent 全链路信息流转的核心枢纽
-- 记忆载体
-  - 外部记忆
-  - 内部记忆
-    - 模型权重
-    - 潜状态
-    - k-v cache
-- 记忆运行机制
-  - 存储&索引
-  - 加载&检索
-  - 更新&刷新
-  - 压缩&摘要
-  - 遗忘&保留
-- 记忆分类
-  - 工作记忆
-  - 短期记忆
-  - 长期记忆
-    - for user
-    - for assistant
-- 记忆类型
-  - 画像记忆(Who)： 你是谁？(用户画像)
-    - 例子： 用户张三, 45岁, 科技公司高管, 关注效率和隐私。
-  - 事实记忆(What)： 世界是什么样的？
-    - 例子：周一国博闭馆
-  - 经历记忆(When & How)： 我们之间发生过什么？(事件日志, 交互历史, 成功/失败案例)
-    - 例子： “上周我帮他预订了去东京的酒店,他当时要求要离地铁站近。”
-  - 偏好记忆(Why)： 你喜欢什么,不喜欢什么？(价值取向, 情感倾向)
-    - 例子： “他不喜欢冗长的邮件,但很看重数据的准确性。”
-  - 技能记忆(How)： 我知道怎么做事吗？(工具使用, 工作流程)
-    - 例子： 我已经学会了如何通过公司内部系统帮他查询报销进度。
+#### 一、记忆载体
+##### 1. 外部记忆
+###### 短期记忆
+- 工作记忆
 
-#### 新的研究
+###### 长期记忆
+**面向用户（for user）**
 
-- MSA: Memory Sparse Attention
-  - https://github.com/EverMind-AI/MSA/blob/main/paper/MSA__Memory_Sparse_Attention_for_Efficient_End_to_End_Memory_Model_Scaling_to_100M_Tokens.pdf
-- N‑gram 统计记忆：Conditional Memory via Scalable Lookup
-  - https://arxiv.org/pdf/2601.07372
-  - 训练n-gram 统计词表,使用多hash存储
-  - 推理时，使用输入token 的最后几个，o1检索出n-gram词段, 拼接作为记忆特征
-  - 当前层input hidden向量做query , 记忆特征作为kv,计算点积注意力，得到权重
-  - 使用残差链接加到原来的input hidden
-- Cursor Composer2：Cyclic Self-Summarization Memory
-  - 训练时使用RL训练模型对之前历史的总结能力，对任务成功-高质量总结给奖励，对任务失败-丢失关键信息给惩罚
-  - 推理时达到上下文长度，使用短提示即可生成高质量总结
+- **画像记忆(Who)**：你是谁？(用户画像)
+  - 例子：用户张三，45岁，科技公司高管，关注效率和隐私。
+- **事实记忆(What)**：世界是什么样的？
+  - 例子：周一圆明园闭馆
+- **经历记忆(When & How)**：我们之间发生过什么？(事件日志，交互历史，成功/失败案例)
+  - 例子："上周我帮他预订了去东京的酒店，他当时要求要离地铁站近。"
+- **偏好记忆(Why)**：你喜欢什么，不喜欢什么？(价值取向，情感倾向)
+  - 例子："他不喜欢冗长的邮件，但很看重数据的准确性。"
+
+**面向助手（for assistant）**
+
+- **技能记忆(How)**：我知道怎么做事情？(工具使用，工作流程)
+  - 例子：我已经学会了如何通过公司内部系统帮他查询报销进度。
+
+##### 2. 内部记忆
+- 模型权重
+- 潜状态
+- kv-cache
+
+#### 二、记忆运行机制
+- 存储&索引
+- 加载&检索
+- 更新&刷新
+- 压缩&摘要
+- 遗忘&保留
+
+#### 三、记忆和知识
+##### 注入手段
+###### 1. RAG（检索增强生成）
+- FileLoader 文件加载
+- Chunk拆分
+- 语义嵌入（句子嵌入）
+- 向量数据库
+  - 元数据
+- 检索算法
+  - 稠密检索：基于embeddings向量的向量相似度 → 余弦相似度
+  - 稀疏检索：基于vocab稀疏表示 → BM25
+- rerank（重排序）
+
+###### 2. Skills（技能注入）
+- 本质：模型主导的渐进式知识注入，是某种任务agent的语义抽象
+- 核心流程
+  - 索引式 Skill 元数据预注入（常驻索引层）
+  - Skill核心规则短指令全量注入
+  - Skill配套资源精准按需注入
+
+###### 3. 基于Tool Call的分阶段任务知识披露
+
+#### 四、未来方向和挑战
+- Real-World Benchmarking and Evaluations（真实世界基准测试与评估）
+- Life-Long Personalization and Trustworthy Memory（终身个性化与可信记忆）
+- Multi-Human-Agent Memory Organization（多人类-多智能体记忆组织）
+- Memory for Multimodal, Embodied, World-Model Agents（多模态、具身、世界模型智能体的记忆）
+- Memory Infrastructure and Efficiency（记忆基础设施与效率）
+- Memory for Self-Evolving Agent And Continual Learning（自进化智能体与持续学习的记忆）
+
+#### 五、新的研究方向
+##### 1. MSA: Memory Sparse Attention（记忆稀疏注意力）
+- 论文链接：
+  - https://github.com/Evv1d/blob/main/paper/MSA_Memory_Sparse_Attention
+  - https://arxiv.org/abs/2504.02732
+- 核心机制
+  - 训练时：学习检索路由和超长上下文
+  - 推理前：所有文档过一遍模型，计算出它们的路由键和KV，并做KV压缩
+  - 推理时：将query弹出路由查询，用相似度找到最匹配top-k文档，拼接到KV做注意力推理
+
+##### 2. N-gram 统计记忆：Conditional Memory via Scalable Lookup（基于可扩展查找的条件记忆）
+- 论文链接：https://arxiv.org/pdf/2601.07372
+- 核心机制
+  - 训练时：统计n-gram词表，使用多hash存储
+  - 推理时：使用输入token的最后几个，检索出n-gram词段，拼接作为记忆特征
+  - 用当前层input hidden向量做query，记忆特征作为kv，计算点积注意力得到权重
+  - 使用残差连接加到原来的input hidden
+
+##### 3. Cursor Composer2: Cyclic Self-Summarization Memory（循环自总结记忆）
+- 核心机制
+  - 训练时：使用RL训练模型对之前历史的总结能力，对任务成功-高质量总结给予奖励，对任务失败-丢失关键信息给予惩罚
+  - 推理时：达到上下文长度时，使用短提示即可生成高质量总结
 
 ### Context
 
