@@ -5,8 +5,6 @@ tags: ["AI综述"]
 draft: false
 ---
 
-# The Anatomy of an LLM-Based Agent
-
 ## 概念、定义
 
 - LLM-based Agent 是以大语言模型为核心("大脑")，具备感知、规划、记忆和工具使用能力，能够自主理解复杂目标并采取行动以达成任务的系统。
