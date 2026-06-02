@@ -50,8 +50,6 @@
             // Create collapse body container
             var body = document.createElement('div');
             body.className = 'collapse-body';
-            body.style.overflow = 'hidden';
-            body.style.maxHeight = 'none';
 
             // Move body nodes into the container
             bodyNodes.forEach(function (node) {
@@ -63,13 +61,12 @@
             toggle.className = 'collapse-toggle';
             toggle.textContent = '▼';
             toggle.setAttribute('aria-hidden', 'true');
-            toggle.style.cssText = 'font-size:0.65em;margin-right:0.5em;display:inline-block;transition:transform 0.2s;user-select:none;';
 
             // Insert toggle at start of heading (before any other text)
             h.insertBefore(toggle, h.firstChild);
 
             // Make heading clickable
-            h.style.cursor = 'pointer';
+            h.classList.add('has-collapse');
             h.title = '点击折叠/展开';
 
             // Insert body AFTER the heading in the DOM
@@ -85,7 +82,6 @@
             // Measure and set initial height
             requestAnimationFrame(function () {
                 body.style.maxHeight = body.scrollHeight + 'px';
-                body.style.transition = 'max-height 0.3s ease';
             });
 
             // Toggle on heading click

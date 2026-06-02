@@ -41,20 +41,11 @@
     margin-top: 1.5em;
 }
 
-/* --- h4：小节标题（加粗、前缀标记） --- */
+/* --- h4：小节标题（加粗、缩进标记） --- */
 .post-content h4 {
     font-size: 1.1em;
     font-weight: 600;
     padding-left: 0.8em;
-    position: relative;
-}
-
-.post-content h4::before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: 700;
 }
 
 /* --- h5：更小的标题（带缩进） --- */
@@ -62,15 +53,7 @@
     font-size: 1em;
     font-weight: 600;
     padding-left: 1em;
-    position: relative;
     color: var(--secondary);
-}
-
-.post-content h5::before {
-    content: "◦";
-    position: absolute;
-    left: 0.2em;
-    color: var(--primary);
 }
 
 /* --- h6：最低级标题（小号、斜体、带缩进） --- */
@@ -98,6 +81,14 @@
 }
 
 /* ===== 折叠标题交互 ===== */
+.post-content h2.has-collapse,
+.post-content h3.has-collapse,
+.post-content h4.has-collapse,
+.post-content h5.has-collapse,
+.post-content h6.has-collapse {
+    cursor: pointer;
+}
+
 .post-content .collapse-toggle {
     font-size: 0.65em;
     margin-right: 0.5em;
