@@ -115,3 +115,10 @@
 .post-content .collapse-body[data-collapsed="true"] {
     user-select: none;
 }
+
+/* ===== 主页间距优化 ===== */
+/* 压缩博客名/签名区域与导航栏、文章列表之间的空白 */
+.first-entry {
+    min-height: auto;
+    margin: 18px 0 24px 0;
+}
