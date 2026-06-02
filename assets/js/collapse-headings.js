@@ -41,13 +41,7 @@
             var h = sec.heading;
             var bodyNodes = sec.bodyNodes;
 
-            // Skip empty sections (no body content)
-            if (bodyNodes.length === 0) {
-                h.classList.add('collapse-empty');
-                return;
-            }
-
-            // Create collapse body container
+            // Create collapse body container (even if empty, for consistency)
             var body = document.createElement('div');
             body.className = 'collapse-body';
 
