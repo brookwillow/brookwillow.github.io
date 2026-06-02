@@ -70,16 +70,22 @@
             h.parentNode.insertBefore(wrapper, h);
             wrapper.appendChild(h);
             wrapper.appendChild(body);
-
-            // Set initial height
-            body.style.maxHeight = 'none';
-            requestAnimationFrame((function (b) {
-                return function () {
-                    b.style.transition = 'max-height 0.3s ease';
-                    b.style.maxHeight = b.scrollHeight + 'px';
-                };
-            })(body));
         }
+
+        // After all sections are created, measure and set heights in a single frame
+        requestAnimationFrame(function () {
+            var bodies = content.querySelectorAll('.collapse-body');
+            for (var k = 0; k < bodies.length; k++) {
+                var b = bodies[k];
+                b.style.overflow = 'visible';
+                b.style.maxHeight = 'none';
+                b.offsetHeight;
+                var h = b.scrollHeight;
+                b.style.overflow = '';
+                b.style.maxHeight = h + 'px';
+                b.style.transition = 'max-height 0.3s ease';
+            }
+        });
 
         // Delegate click events for all headings to avoid per-element listeners
         content.addEventListener('click', function (e) {
@@ -105,9 +111,13 @@
             var isCollapsed = bodyEl.style.maxHeight === '0px' || bodyEl.getAttribute('data-collapsed') === 'true';
 
             if (isCollapsed) {
+                // Temporarily remove overflow constraint for accurate measurement
+                bodyEl.style.overflow = 'visible';
                 bodyEl.style.maxHeight = 'none';
-                bodyEl.offsetHeight;
-                bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
+                bodyEl.offsetHeight; // force reflow
+                var fullHeight = bodyEl.scrollHeight;
+                bodyEl.style.overflow = '';
+                bodyEl.style.maxHeight = fullHeight + 'px';
                 bodyEl.setAttribute('data-collapsed', 'false');
                 if (toggleEl) toggleEl.textContent = '▼';
             } else {
