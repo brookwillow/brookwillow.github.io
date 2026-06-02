@@ -96,3 +96,49 @@
 .post-content li {
     margin-bottom: 0.3em;
 }
+
+/* ===== 折叠标题交互 ===== */
+.post-content .collapse-toggle {
+    font-size: 0.65em;
+    margin-right: 0.5em;
+    display: inline-block;
+    transition: transform 0.2s;
+    user-select: none;
+    color: var(--secondary);
+}
+
+.post-content .collapse-empty .collapse-toggle {
+    opacity: 0.3;
+}
+
+.post-content .collapse-section {
+    position: relative;
+}
+
+.post-content h2:hover .collapse-toggle,
+.post-content h3:hover .collapse-toggle,
+.post-content h4:hover .collapse-toggle,
+.post-content h5:hover .collapse-toggle,
+.post-content h6:hover .collapse-toggle {
+    color: var(--primary);
+}
+
+.post-content .collapse-body {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+/* 折叠时内容区域禁止选中，避免误操作 */
+.post-content .collapse-body[data-collapsed="true"] {
+    user-select: none;
+}
+
+/* 空章节提示 */
+.post-content .collapse-empty::after {
+    content: "（空）";
+    font-size: 0.7em;
+    color: var(--tertiary);
+    margin-left: 0.5em;
+    font-weight: 400;
+    font-style: italic;
+}

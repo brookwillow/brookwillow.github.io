@@ -1,0 +1,5 @@
+{{- /* Footer custom content area start */ -}}
+{{- /* Load collapsible headings script */ -}}
+{{- $collapse := resources.Get "js/collapse-headings.js" | resources.Minify | fingerprint -}}
+<script defer src="{{ $collapse.RelPermalink }}" integrity="{{ $collapse.Data.Integrity }}"></script>
+{{- /* Footer custom content area end */ -}}
