@@ -22,14 +22,14 @@ draft: false
 
 - DecoderOnly
   - Prefix-Decoder
+    - UniLM
+    - 多模态Decoder
   - Causal-Decoder
-  - GPT系列
+    - GPT系列
 - EncoderOnly
   - BERT
 - EncoderDecoder
   - T5、BART
-  - UniLM
-  - 多模态Decoder
 - Diffusion Model
   - MDLM、D3LM
   - 扩散语言模型：通过前向加噪与反向去噪生成文本，非自回归并行生成
@@ -46,17 +46,18 @@ draft: false
 - 稠密模型
   - GPT3
   - Llama
-  - Deepseek V1
 - 稀疏模型
   - 混合专家模型（MOE）
-  - Mixtral
-  - Deepseek V2
+    - Mixtral
+    - Deepseek V2
 
 ### 思维链
 
 - 有
   - DeepSeek R1
 - 无
+  - Deepseek V1
+- 动态
 
 ## 基本构成
 
