@@ -1,7 +1,7 @@
 /**
  * Collapsible Headings for Blog Posts
  * Click any h2-h6 heading to collapse/expand its content section.
- * Initial state: all expanded. Smooth animation on toggle.
+ * Uses level-aware Range extraction to build nested collapsible sections.
  */
 (function () {
     'use strict';
@@ -10,45 +10,46 @@
         var content = document.querySelector('.post-content');
         if (!content) return;
 
-        var headings = content.querySelectorAll('h2, h3, h4, h5, h6');
-        if (headings.length === 0) return;
+        // Collect all headings with their levels
+        var headingEls = content.querySelectorAll('h2, h3, h4, h5, h6');
+        if (headingEls.length === 0) return;
 
-        // Group: each heading owns the content up to the next heading of same or higher level
-        var sections = [];
-        var current = null;
+        var headings = [];
+        headingEls.forEach(function (h) {
+            headings.push({ el: h, level: parseInt(h.tagName.substring(1)) });
+        });
 
-        for (var i = 0; i < content.children.length; i++) {
-            var child = content.children[i];
-            var tag = child.tagName || '';
-            var isHeading = /^H[2-6]$/.test(tag);
+        // Process bottom-up (deepest to shallowest) so child sections are
+        // already wrapped when parent extracts its content range
+        for (var i = headings.length - 1; i >= 0; i--) {
+            var h = headings[i].el;
+            var level = headings[i].level;
 
-            if (isHeading) {
-                current = {
-                    heading: child,
-                    level: parseInt(tag.substring(1)),
-                    bodyNodes: []
-                };
-                sections.push(current);
-            } else if (current) {
-                current.bodyNodes.push(child);
+            // Find the next heading of same or higher level
+            var endAt = null;
+            for (var j = i + 1; j < headings.length; j++) {
+                if (headings[j].level <= level) {
+                    endAt = headings[j].el;
+                    break;
+                }
             }
-        }
 
-        if (sections.length === 0) return;
+            // Extract content range: from after heading to before next same/higher heading
+            var range = document.createRange();
+            range.setStartAfter(h);
+            if (endAt) {
+                range.setEndBefore(endAt);
+            } else {
+                range.setEndAfter(content.lastChild);
+            }
 
-        // Process each section
-        sections.forEach(function (sec) {
-            var h = sec.heading;
-            var bodyNodes = sec.bodyNodes;
+            // Extract the content fragment
+            var fragment = range.extractContents();
 
-            // Create collapse body container (even if empty, for consistency)
+            // Create collapse body
             var body = document.createElement('div');
             body.className = 'collapse-body';
-
-            // Move body nodes into the container
-            bodyNodes.forEach(function (node) {
-                body.appendChild(node);
-            });
+            body.appendChild(fragment);
 
             // Create toggle indicator
             var toggle = document.createElement('span');
@@ -56,55 +57,66 @@
             toggle.textContent = '▼';
             toggle.setAttribute('aria-hidden', 'true');
 
-            // Insert toggle at start of heading (before any other text)
             h.insertBefore(toggle, h.firstChild);
-
-            // Make heading clickable
             h.classList.add('has-collapse');
             h.title = '点击折叠/展开';
 
-            // Insert body AFTER the heading in the DOM
+            // Insert body after heading
             h.parentNode.insertBefore(body, h.nextSibling);
 
-            // Wrap heading + body in a section div for clean grouping
+            // Wrap heading + body in section div
             var wrapper = document.createElement('div');
             wrapper.className = 'collapse-section';
             h.parentNode.insertBefore(wrapper, h);
             wrapper.appendChild(h);
             wrapper.appendChild(body);
 
-            // Measure and set initial height
-            requestAnimationFrame(function () {
-                body.style.maxHeight = body.scrollHeight + 'px';
-            });
+            // Set initial height
+            body.style.maxHeight = 'none';
+            requestAnimationFrame((function (b) {
+                return function () {
+                    b.style.transition = 'max-height 0.3s ease';
+                    b.style.maxHeight = b.scrollHeight + 'px';
+                };
+            })(body));
+        }
 
-            // Toggle on heading click
-            h.addEventListener('click', function (e) {
-                if (e.target.tagName === 'A' || e.target.tagName === 'IMG') return;
-
-                var bodyEl = this.parentNode.querySelector('.collapse-body');
-                var toggleEl = this.querySelector('.collapse-toggle');
-                if (!bodyEl) return;
-
-                var isCollapsed = bodyEl.style.maxHeight === '0px' || bodyEl.getAttribute('data-collapsed') === 'true';
-
-                if (isCollapsed) {
-                    // Expand
-                    bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
-                    bodyEl.setAttribute('data-collapsed', 'false');
-                    if (toggleEl) toggleEl.textContent = '▼';
-                    toggleEl && (toggleEl.style.transform = 'rotate(0deg)');
-                } else {
-                    // Collapse
-                    bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
-                    // Force reflow then animate to 0
-                    bodyEl.offsetHeight;
-                    bodyEl.style.maxHeight = '0px';
-                    bodyEl.setAttribute('data-collapsed', 'true');
-                    if (toggleEl) toggleEl.textContent = '▶';
-                    toggleEl && (toggleEl.style.transform = 'rotate(-90deg)');
+        // Delegate click events for all headings to avoid per-element listeners
+        content.addEventListener('click', function (e) {
+            var heading = e.target;
+            // Walk up to find the heading in case click is on toggle span
+            while (heading && heading !== content) {
+                if (/^H[2-6]$/.test(heading.tagName) && heading.classList.contains('has-collapse')) {
+                    break;
                 }
-            });
+                heading = heading.parentNode;
+            }
+            if (!heading || heading === content) return;
+
+            if (e.target.tagName === 'A' || e.target.tagName === 'IMG') return;
+
+            var section = heading.parentNode;
+            if (!section || !section.classList.contains('collapse-section')) return;
+
+            var bodyEl = section.querySelector('.collapse-body');
+            var toggleEl = heading.querySelector('.collapse-toggle');
+            if (!bodyEl) return;
+
+            var isCollapsed = bodyEl.style.maxHeight === '0px' || bodyEl.getAttribute('data-collapsed') === 'true';
+
+            if (isCollapsed) {
+                bodyEl.style.maxHeight = 'none';
+                bodyEl.offsetHeight;
+                bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
+                bodyEl.setAttribute('data-collapsed', 'false');
+                if (toggleEl) toggleEl.textContent = '▼';
+            } else {
+                bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
+                bodyEl.offsetHeight;
+                bodyEl.style.maxHeight = '0px';
+                bodyEl.setAttribute('data-collapsed', 'true');
+                if (toggleEl) toggleEl.textContent = '▶';
+            }
         });
     }
 
