@@ -1,7 +1,7 @@
 ---
 title: The Anatomy of an LLM-Based Agent
 date: 2025-12-07 00:00:00
-tags: ["AI综述"]
+tags: ["AI"]
 draft: false
 ---
 

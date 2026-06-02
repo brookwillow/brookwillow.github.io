@@ -1,7 +1,7 @@
 ---
 title: "从 Qwen2.5-Omni AUT 表征到 Whisper Decoder：一次车载 ASR 旁路实验复盘"
 date: 2026-05-31T22:36:21+08:00
-tags: ["AI", "ASR", "语音识别", "LLM", "端到端", "工程实践"]
+tags: ["AI", "语音"]
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 从 ChatGPT 到 Manus 到 Claude Code：通用 Agent 的进化之路
 date: 2026-05-29T15:10:45+08:00
-tags: ["AI", "Agent", "LLM"]
+tags: ["AI"]
 draft: true
 ---
 

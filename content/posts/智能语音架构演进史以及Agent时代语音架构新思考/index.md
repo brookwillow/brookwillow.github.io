@@ -1,7 +1,7 @@
 ---
 title: 智能语音架构演进史以及Agent时代新思考
 date: 2026-01-28 00:03:51
-tags: ["AI综述", "智能语音"]
+tags: ["AI", "语音"]
 draft: false
 ---
 

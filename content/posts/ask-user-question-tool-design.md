@@ -1,7 +1,7 @@
 ---
 title: AskUserQuestion 的工具设计思考：追问机制应该在哪里实现？
 date: 2026-05-29T15:10:45+08:00
-tags: ["AI", "Agent", "产品设计", "人机交互"]
+tags: ["AI"]
 draft: true
 ---
 
