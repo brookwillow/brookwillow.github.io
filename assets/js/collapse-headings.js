@@ -82,8 +82,14 @@
                 b.offsetHeight;
                 var h = b.scrollHeight;
                 b.style.overflow = '';
-                b.style.maxHeight = h + 'px';
+                b.style.maxHeight = h + 10 + 'px';
                 b.style.transition = 'max-height 0.3s ease';
+                // After transition, remove fixed max-height to prevent clipping
+                (function (bodyEl) {
+                    setTimeout(function () {
+                        bodyEl.style.maxHeight = 'none';
+                    }, 350);
+                })(b);
             }
         });
 
@@ -111,15 +117,18 @@
             var isCollapsed = bodyEl.style.maxHeight === '0px' || bodyEl.getAttribute('data-collapsed') === 'true';
 
             if (isCollapsed) {
-                // Temporarily remove overflow constraint for accurate measurement
                 bodyEl.style.overflow = 'visible';
                 bodyEl.style.maxHeight = 'none';
-                bodyEl.offsetHeight; // force reflow
+                bodyEl.offsetHeight;
                 var fullHeight = bodyEl.scrollHeight;
                 bodyEl.style.overflow = '';
-                bodyEl.style.maxHeight = fullHeight + 'px';
+                bodyEl.style.maxHeight = fullHeight + 10 + 'px';
                 bodyEl.setAttribute('data-collapsed', 'false');
                 if (toggleEl) toggleEl.textContent = '▼';
+                // After transition, remove fixed max-height to prevent clipping
+                setTimeout(function () {
+                    bodyEl.style.maxHeight = 'none';
+                }, 350);
             } else {
                 bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
                 bodyEl.offsetHeight;
