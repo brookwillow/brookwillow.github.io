@@ -42,7 +42,7 @@ draft: false
 
 1280 维只是入场券。下面这些东西一个都没对上：
 
-- **时间长度**：AUT 输出只有 36 个时间步，而 Whisper encoder 通常输出约 750 个时间步（30 秒音频经过 4× 卷积下采样）。时间密度差了近 20 倍。
+- **时间长度**：AUT 的 `ln_post` 输出只有 36 个时间步，而 Whisper encoder 的输出和音频长度成正比（每 2 秒约 50 步，30 秒约 750 步）。对短车控指令来说，`ln_post` 的时间密度比 Whisper 更稀疏，导致 decoder cross-attention 能看的时间位置偏少。
 - **表征分布**：均值、方差、方向、token 间相关性在 Omni 训练后都发生了漂移。
 - **位置语义**：同样是第 20 个 hidden，未必对应 Whisper encoder 里同一段音频区域。
 - **训练目标**：Whisper encoder 服务于 ASR，Qwen AUT 在 Omni 里服务于多模态理解和后续 LLM 推理。
