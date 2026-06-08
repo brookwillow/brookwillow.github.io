@@ -109,6 +109,7 @@ draft: false
 
 - Sliding Window Attention：按固定窗口限定 KV 存储范围，只保留近期窗口内的 KV，从缓存长度上缩减 KV 占用
 - Streaming LLM：动态组织 KV 缓存策略，保留锚点与近期 KV、丢弃中间冗余部分，实现长文本下的 KV 缓存轻量化
+
 - 前馈网络（FFN）
 - 层归一化（LayerNorm）
 - 残差连接
@@ -238,14 +239,14 @@ draft: false
   - 文件
   - GUI操作
 - 环境采集
-- 系统事件
+  - 系统事件
 
 ### 工具
 
 - Tool Call
   - 狭义单函数调用（FunctionCall）
   - Programmatic Tool Calling
-- Tool Search
+  - Tool Search
 - 工具接入标准与协议
   - MCP：自定义工具接入协议；对于非开放Agent而言，MCP协议更多的是对齐工具，对齐之后需要自定义工具协议，已达到最佳能效比
   - 自定义工具接入协议
@@ -261,14 +262,14 @@ draft: false
 
 #### 记忆载体
 - 外部记忆
+  - 工作记忆
   - 短期记忆
-    - 工作记忆
   - 长期记忆
     - **面向用户（for user）**
       - **画像记忆(Who)**：你是谁？(用户画像)
         - 例子：用户张三，45岁，科技公司高管，关注效率和隐私。
       - **事实记忆(What)**：世界是什么样的？
-        - 例子：周一圆明园闭馆
+        - 例子：周一国博闭馆
       - **经历记忆(When & How)**：我们之间发生过什么？(事件日志，交互历史，成功/失败案例)
         - 例子："上周我帮他预订了去东京的酒店，他当时要求要离地铁站近。"
       - **偏好记忆(Why)**：你喜欢什么，不喜欢什么？(价值取向，情感倾向)
@@ -363,12 +364,6 @@ draft: false
 
 ### 控制方式
 
-- ReAct(Think-Act-Oberve)
-- Self-Reflection
-- Evaluator-Optimizer
-
-### 流程类型
-
 #### 链式型
 
 - Prompt Chaining
@@ -376,13 +371,17 @@ draft: false
 
 #### 反应型/循环型
 
+- ReAct(Think-Act-Oberve)
+- Self-Reflection
+- Evaluator-Optimizer
+
 #### 规划型
 
 - Plan-and-Execute
+- Orchestrator-Workers
 
 #### 并行型
 
-- Orchestrator-Workers
 - 投票
 - 任务分片
 
@@ -395,7 +394,13 @@ draft: false
 
 ### 常见BenchMark
 
-- LongMemEval
+#### 组成部分
+
+- 测试用例集
+- 评分标准
+- 基线结果
+
+#### 分类
   - 核心评估：长对话记忆、跨会话信息追踪、时序推理、信息更新、记忆可靠性与抗幻觉能力
   - 核心任务：在超长多轮对话与跨会话历史中，完成信息提取、时序理解、偏好更新追踪，并对无足够记忆信息的问题主动弃权，不编造内容
 - MMLU / C-Eval
@@ -455,12 +460,6 @@ draft: false
 - 人工评估器
 - 代码评估器
 
-### 组成部分
-
-- 测试用例集
-- 评分标准
-- 基线结果
-
 ## 安全
 
 - Prompt Injection
@@ -484,13 +483,13 @@ draft: false
 - 核心：以信息检索 + 学术推理 + 长文本处理为核心，逐步具备复杂问题拆解、多源信息整合、深度思考的能力
 - 产品
   - openai deepresearch
-  - autoglm
 
 ### ComputerUser Agents
 
 - 核心：以模拟人类用户的 GUI / 触屏操作为动作空间，直接在操作系统层面完成用户级任务，呈现出较强的平台泛化能力
 - 产品
   - 豆包手机
+  - autoglm
 
 ### Conversational Agents
 

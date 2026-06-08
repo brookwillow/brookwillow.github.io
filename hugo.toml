@@ -1,5 +1,5 @@
 baseURL = "https://brookwillow.github.io/"
-title = "我的博客"
+title = "Brook'Log"
 theme = "PaperMod"
 languageCode = "zh"
 defaultContentLanguage = "zh"
@@ -25,7 +25,7 @@ buildExpired = false
   title = "我的博客"
   description = "分享技术、生活与思考"
   keywords = ["博客", "技术", "生活"]
-  author = "博主"
+  author = "brook"
   defaultTheme = "auto"
   disableThemeToggle = false
   ShowReadingTime = true
@@ -53,7 +53,7 @@ buildExpired = false
 
   [[params.socialIcons]]
     name = "twitter"
-    url = "https://twitter.com/yourusername"
+    url = "https://twitter.com/jiesean"
 
   [[params.socialIcons]]
     name = "rss"
