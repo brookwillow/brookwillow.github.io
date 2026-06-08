@@ -1,0 +1,23 @@
+content/posts/llm-based-agent-knowledge-system.md
+  13942eaedafc624f 112,242,249,265,272,374-377,381,397-403,492
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.22",
+  "base_commit_sha": "ab104defe6ea4fac60b64ab402747a4454e0573c",
+  "prompts": {
+    "13942eaedafc624f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c801cd98-ab37-40cf-a86b-48387412f4a9",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "wangj77",
+      "messages": [],
+      "total_additions": 18,
+      "total_deletions": 19,
+      "accepted_lines": 18,
+      "overriden_lines": 0
+    }
+  }
+}
