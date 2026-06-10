@@ -1,0 +1,23 @@
+content/posts/memory-in-deep-learning.md
+  1c59d7787ba9f6e1 1-2,4-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.22",
+  "base_commit_sha": "0c43c27924dc54d1534f99c77c05eb5637a246ac",
+  "prompts": {
+    "1c59d7787ba9f6e1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e00e93bd-ae03-490c-967e-16d14939c403",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "brook",
+      "messages": [],
+      "total_additions": 7,
+      "total_deletions": 0,
+      "accepted_lines": 6,
+      "overriden_lines": 1
+    }
+  }
+}
