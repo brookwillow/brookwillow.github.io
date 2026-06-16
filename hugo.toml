@@ -87,5 +87,14 @@ buildExpired = false
     url = "/search/"
     weight = 40
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$'], ['\\[', '\\]']]
+          inline = [['$', '$'], ['\\(', '\\)']]
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]
