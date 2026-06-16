@@ -1,7 +1,7 @@
 ---
 title: "神经网络中的记忆问题"
 date: 2023-04-01
-tags: ["深度学习", "神经网络", "RNN", "LSTM", "Transformer"]
+tags: ["AI"]
 draft: false
 ---
 
