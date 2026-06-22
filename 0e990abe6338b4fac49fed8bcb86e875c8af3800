@@ -1,0 +1,54 @@
+hugo.toml
+  2254d21363a84bc0 17
+layouts/shortcodes/math.html
+  2254d21363a84bc0 1
+layouts/partials/extend_head.html
+  2254d21363a84bc0 1,8-15
+  1a9a4bc718eca6f8 2-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.22",
+  "base_commit_sha": "0e990abe6338b4fac49fed8bcb86e875c8af3800",
+  "prompts": {
+    "1a9a4bc718eca6f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ecf13-325f-7ba0-b2ca-fbefa751b769",
+        "model": "gpt-5.5"
+      },
+      "human_author": "brook",
+      "messages": [],
+      "total_additions": 17,
+      "total_deletions": 15,
+      "accepted_lines": 6,
+      "overriden_lines": 0
+    },
+    "2254d21363a84bc0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4b2a5705-cb76-412a-a3b7-5c83f683adf6",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "brook",
+      "messages": [],
+      "total_additions": 27,
+      "total_deletions": 9,
+      "accepted_lines": 17,
+      "overriden_lines": 0
+    },
+    "b083dc1eca088b3e": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "932bf92e-7090-479f-be2f-124baf350a01",
+        "model": "copilot/claude-opus-4.6"
+      },
+      "human_author": "brook",
+      "messages": [],
+      "total_additions": 408,
+      "total_deletions": 151,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  }
+}
