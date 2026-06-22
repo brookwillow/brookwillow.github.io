@@ -14,7 +14,7 @@ buildExpired = false
 
 [minify]
   disableXML = true
-  minifyOutput = true
+  minifyOutput = false
 
 [taxonomies]
   tag = "tags"
@@ -89,6 +89,8 @@ buildExpired = false
 
 [markup]
   [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.passthrough]
         enable = true
