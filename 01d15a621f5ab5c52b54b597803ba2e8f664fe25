@@ -1,0 +1,23 @@
+content/posts/agent-engineering-paradigm-shift.md
+  b083dc1eca088b3e 27-30,45,47,49,51,53,55-62,64,66,116,118-119,121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.23",
+  "base_commit_sha": "01d15a621f5ab5c52b54b597803ba2e8f664fe25",
+  "prompts": {
+    "b083dc1eca088b3e": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "932bf92e-7090-479f-be2f-124baf350a01",
+        "model": "copilot/claude-opus-4.6"
+      },
+      "human_author": "brook",
+      "messages": [],
+      "total_additions": 70,
+      "total_deletions": 63,
+      "accepted_lines": 24,
+      "overriden_lines": 3
+    }
+  }
+}
