@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.24",
+  "base_commit_sha": "d4a34d52e8544ea561527d79a741023ebcc4eee1",
+  "prompts": {
+    "c2644b9c61c37169": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "15b3d24e-5d1c-42b2-a0fe-0a606c3bc50b",
+        "model": "copilot/auto"
+      },
+      "human_author": "brook",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    }
+  }
+}
